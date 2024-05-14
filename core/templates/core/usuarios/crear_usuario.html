@@ -1,0 +1,36 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Usuario</title>
+</head>
+<body>
+    <div class="container"><h1>Crear Usuario</h1></div>
+    
+
+    <div class="container">
+        <form method="post">
+
+            {% csrf_token %}
+            {{ form.as_p }}
+        
+            <div class="container mb-4">
+                <button type="submit" class="btn btn-primary">
+                    Crear Usuario
+                </button>
+            </div>
+        </form>
+    </div>
+
+
+
+    <a href="{% url 'listar_usuarios' %}">Volver a la lista de usuarios</a>
+</body>
+
+{% endif %}
+
+{% endblock %}

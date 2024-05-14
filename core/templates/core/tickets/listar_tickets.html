@@ -1,0 +1,12 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<h3> Administracion de Tickets </h3>
+{% if request.user.is_authenticated %}
+    <hr>
+    <h4>
+        Listar Tickets 
+    </h4>
+{% endif %}
+{% endblock %}

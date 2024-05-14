@@ -1,0 +1,52 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<h3> Administracion de Usuarios </h3>
+{% if request.user.is_authenticated %}
+    <hr>
+    <h4>
+        Listar Usuarios 
+    </h4>
+    <a href="{% url 'crear_usuario' %}">Crear nuevo usuario</a>
+
+    <div
+        class="table-responsive"
+    >
+        <table
+            class="table table-centered table-nowrap table-hover"
+        >
+            <thead class="thead-light table-active table-dark">
+
+                <tr>
+                    <th class="border-0">Nombre</th>
+                    <th class="border-0">Apellido</th>
+                    <th class="border-0">Correo</th>
+                    <th class="border-0">Rol</th>
+                    <th class="border-0">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in usuarios %}
+                <tr
+                >
+                    <td>{{ usuario.nombre }}</td>
+                    <td>{{ usuario.apellido}}</td>
+                    <td>{{ usuario.email }}</td>
+                    <td>{{ usuario.rol }}</td>
+                    <td>
+                        
+                        <a href="{% url 'detalle_usuario' usuario.pk %}" target = "_blank">Ver detalle</a> |
+                        <a href="#">Editar</a>    
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                
+            </tfoot>
+        </table>
+    </div>
+        
+{% endif %}
+
+{% endblock %}
