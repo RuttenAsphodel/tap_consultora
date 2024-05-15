@@ -12,9 +12,6 @@ from .models import Usuario, Ticket
 def home(request):
     return render(request, 'core/home.html')
 
-
-# Decorator login_required para validar el usuario antes de ejecutar la vista products
-@login_required
 # Vista Listar Usuarios
 def vista_listar_usuarios(request):
     usuarios = Usuario.objects.filter(is_active=True)
@@ -83,7 +80,6 @@ def vista_crear_ticket(request):
 
     return render(request, 'core/tickets/crear_ticket.html', {'form': form})
 
-@login_required
 def vista_editar_ticket(request, id):
     ticket = get_object_or_404(Ticket, id=id)
     # Permitir edición solo al ejecutivo asignado o al cliente creador
