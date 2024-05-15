@@ -4,14 +4,11 @@
 
 <h3> Administracion de Usuarios </h3>
 {% if request.user.is_authenticated %}
-    <hr>
-    <h4>
-        Listar Usuarios 
-    </h4>
+
     <a href="{% url 'crear_usuario' %}">Crear nuevo usuario</a>
 
     <div
-        class="table-responsive"
+        class="table-responsive small"
     >
         <table
             class="table table-centered table-nowrap table-hover"
@@ -37,7 +34,7 @@
                     <td>
                         
                         <a href="{% url 'detalle_usuario' usuario.pk %}" target = "_blank">Ver detalle</a> |
-                        <a href="#">Editar</a>    
+                        <a href="{% url 'eliminar_usuario' usuario.pk %}">Eliminar</a>    
                 </tr>
                 {% endfor %}
             </tbody>

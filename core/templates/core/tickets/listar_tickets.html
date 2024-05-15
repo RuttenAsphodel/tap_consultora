@@ -4,9 +4,50 @@
 
 <h3> Administracion de Tickets </h3>
 {% if request.user.is_authenticated %}
-    <hr>
-    <h4>
-        Listar Tickets 
-    </h4>
+
+<a href="{% url 'crear_ticket' %}">Crear nuevo ticket</a>
+
+<div
+class="table-responsive small"
+>
+<table class="table table-centered table-nowrap table-hover">
+    <thead class="thead-light table-active table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Fecha Creación</th>
+            <th>Cliente</th>
+            <th>Ejecutivo</th>
+            <th>Área</th>
+            <th>Tipo</th>
+            <th>Criticidad</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ticket in tickets %}
+        <tr>
+            <td>{{ ticket.id }}</td>
+            <td>{{ ticket.fecha_creacion }}</td>
+            <td>{{ ticket.cliente.nombre }} {{ ticket.cliente.apellido }}</td>
+            <td>{{ ticket.ejecutivo.nombre }} {{ ticket.ejecutivo.apellido }}</td>
+            <td>{{ ticket.area }}</td>
+            <td>{{ ticket.tipo }}</td>
+            <td>{{ ticket.criticidad }}</td>
+            <td>{{ ticket.estado }}</td>
+            <td>
+                <a href="{% url 'detalle_ticket' ticket.pk  %}" target='_blank'>Ver detalle</a> |
+                <a href="{% url 'editar_ticket' ticket.pk %}">Editar</a>
+          
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</div>
+
+
+
 {% endif %}
 {% endblock %}

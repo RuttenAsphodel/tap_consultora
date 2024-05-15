@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<h3> Editar Ticket </h3>
+{% if request.user.is_authenticated %}
+
+
+    <h1>Editar Ticket</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar cambios</button>
+    </form>
+
+
+{% endif %}
+
+{% endblock %}
