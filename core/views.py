@@ -38,7 +38,6 @@ def ticket_contar_prioridad(request):
         'prioridad_baja': prioridad_baja,
     }
     
-    print(contar_prioridad)
     return {'ticket_contar_prioridad': contar_prioridad}
     
 
