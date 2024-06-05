@@ -1,13 +1,227 @@
 {% extends 'core/base.html' %}
 
 {% block content %}
+<h5 class="text-end text-success">
+    Bienvenido {{ user.username | upper }} 
+</h5>
+<hr>
 
-<h3> Inicio </h3>
-<!-- {% if request.user.is_authenticated %} -->
-    <hr>
-    <h4>
-        Bienvenido {{ user.username | upper }} 
-    </h4>
-<!-- {% endif %} -->
+<h3> Panel de Control de Tickets </h3>
+<br>
+
+
+<div class="row row-cols-1 row-cols-md-4 g-6">
+    <div class="col">
+        <div class="card border-primary mb-3 text-center p-1" style="max-width: auto;">
+            <div class="card-body p-0">
+                <div class="card-text text-bg-primary">
+                    <h5 class="card-text text-white">Total de Tickets</h5>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                    >
+                      <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"></path>
+                      <path d="M13 5v2"></path>
+                      <path d="M13 17v2"></path>
+                      <path d="M13 11v2"></path>
+                    </svg>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">{{ ticket_contar.contar_todos }}</h2>
+                    <p class="card-text">+12.5% desde el mes pasado</p>
+                </div>
+            </div>
+        </div>
+        
+    </div>   
+    
+    <div class="col">
+        <div class="card border-danger mb-3 text-center p-1" style="max-width: auto;">
+            <div class="card-body p-0">
+                <div class="card-text text-bg-danger">
+                    <h5 class="card-text text-white">Tickets Pendientes</h5>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                    >
+                      <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"></path>
+                      <path d="M13 5v2"></path>
+                      <path d="M13 17v2"></path>
+                      <path d="M13 11v2"></path>
+                    </svg>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">{{ ticket_contar.contar_pendiente }}</h2>
+                    <p class="card-text">+8.2% desde el mes pasado</p>
+                </div>
+            </div>
+        </div>
+    </div>   
+    
+    <div class="col">
+        <div class="card border-success mb-3 text-center p-1" style="max-width: auto;">
+            <div class="card-body p-0">
+                <div class="card-text text-bg-success">
+                    <h5 class="card-text text-white">Tickets Cerrados</h5>
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                    >
+                    <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"></path>
+                    <path d="M13 5v2"></path>
+                    <path d="M13 17v2"></path>
+                    <path d="M13 11v2"></path>
+                    </svg>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">{{ ticket_contar.contar_cerrados }}</h2>
+                    <p class="card-text">+22.2% desde el mes pasado</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col">
+        <div class="card border-dark mb-3 text-center p-1" style="max-width: auto;">
+            <div class="card-body p-0">
+                <div class="card-text text-bg-dark">
+                    <h5 class="card-text text-white">Tickets por Prioridad</h5>
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                >
+                    <path d="m12 14 4-4"></path>
+                    <path d="M3.34 19a10 10 0 1 1 17.32 0"></path>
+                </svg>
+                </div>
+    
+                <div class="card-body">
+                    <div class="bg-red-500 text-danger">
+                        <h5 class="card-text">Alta: {{ ticket_contar_prioridad.prioridad_alta }}</h5>
+                    </div>
+                    <div class="bg-red-500 text-active">
+                        <h5 class="card-text">Media: {{ ticket_contar_prioridad.prioridad_media }}</h5>
+                    </div>
+                    <div class="bg-green-500 text-success">
+                        <h5 class="card-text">Baja: {{ ticket_contar_prioridad.prioridad_baja }}</h5>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>   
+    </div>
+
+    
+</div>
+    
+<br>
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="col">
+        <div class="card border-dark mb-3 text-center p-1" style="max-width: auto;">
+            <div class="card bg-danger">
+                <h5 class="text-white text-center">Tickets Prioridad Alta</h5>
+            </div>
+            <div class="table-responsive small">
+                <table class="table table-centered table-nowrap table-hover">
+                    <thead class="thead-light table-active">
+                        <tr>
+                            <th>ID</th>
+                            <th>Fecha Creación</th>
+                            <th>Ejecutivo</th>
+                            <th>Área</th>
+                            <th>Criticidad</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ticket in ticket_prioridad %}
+                        <tr>
+                            <td># {{ ticket.id }}</td>
+                            <td>{{ ticket.fecha_creacion | date:"SHORT_DATE_FORMAT" }}</td>
+                            <td>{{ ticket.ejecutivo.nombre }} {{ ticket.ejecutivo.apellido }}</td>
+                            <td>{{ ticket.tipo }}</td>
+                            <td>{{ ticket.criticidad }}</td>
+                            <td>{{ ticket.estado }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+    <div class="col">
+        <div class="card border-dark mb-3 text-center p-1" style="max-width: auto;">
+            <div class="card bg-danger">
+                <h5 class="text-white text-center">Tickets Pendientes</h5>
+            </div>
+            <div class="table-responsive small">
+                <table class="table table-centered table-nowrap table-hover">
+                    <thead class="thead-light table-active">
+                        <tr>
+                            <th>ID</th>
+                            <th>Fecha Creación</th>
+                            <th>Ejecutivo</th>
+                            <th>Criticidad</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ticket in ticket_pendiente %}
+                        <tr>
+                            <td># {{ ticket.id }}</td>
+                            <td>{{ ticket.fecha_creacion | date:"SHORT_DATE_FORMAT" }}</td>
+                            <td>{{ ticket.ejecutivo.nombre }} {{ ticket.ejecutivo.apellido }}</td>
+                            <td>{{ ticket.criticidad }}</td>
+                            <td>{{ ticket.estado }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            
+            </div>
+        </div>
+        
+    </div>
+
+</div>      
+
+
+
+
+
 
 {% endblock %}
