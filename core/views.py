@@ -30,11 +30,7 @@ def ticket_contar_prioridad(request):
     prioridad_alta = Ticket.objects.filter(criticidad = 'Alta').count()
     prioridad_media = Ticket.objects.filter(criticidad = 'Media').count()
     prioridad_baja = Ticket.objects.filter(criticidad = 'Baja').count()
-    
-    print(f'Prioridad Alta: {prioridad_alta}')
-    print(f'Prioridad Media: {prioridad_media}')
-    print(f'Prioridad Baja: {prioridad_baja}')
-    
+       
     
     contar_prioridad= {
         'prioridad_alta': prioridad_alta,
