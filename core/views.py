@@ -154,3 +154,15 @@ def vista_editar_ticket(request, id):
 def exit(request):
     logout(request)
     return redirect('home')
+
+
+
+# Vistas para Gabriel Mena
+
+# Vistas CRUD Area
+
+# Vistas CRUD Criticidad
+
+# Vistas CRUD Tipo
+
+# Vistas CRUD Estaoo
