@@ -12,6 +12,16 @@ class Usuario(models.Model):
     def __str__(self):
         return self.nombre + " " + self.apellido    
 
+# Modelo de Datos Area 
+class Area(models.Model):
+    nombre_area = models.CharField(max_length=255, blank=False)
+
+# Modelo de Datos Criticidad
+class Criticidad(models.Model):
+    nombre_criticidad = models.CharField(max_length=255, blank=False)
+
+
+
 # Modelo de datos Tickets
 class Ticket(models.Model):
     fecha_creacion = models.DateTimeField(auto_now_add=True)
@@ -23,3 +33,5 @@ class Ticket(models.Model):
     estado = models.CharField(max_length=255, choices=[('Pendiente', 'Pendiente'), ('Solucionado', 'Solucionado'), ('Validado', 'Validado'), ('Cerrado', 'Cerrado')], default='Pendiente')
     descripcion = models.TextField()
     observaciones = models.TextField(blank=True)
+
+
