@@ -1,0 +1,3 @@
+Ejecutar en terminal para instalar dependencias y librerias
+
+pip install -r requirements.txt
