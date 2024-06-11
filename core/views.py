@@ -15,8 +15,8 @@ from .models import Usuario, Ticket
 
 def ticket_contar(request):
     contar_todos = Ticket.objects.all().count()
-    contar_pendiente = Ticket.objects.filter(estado='Pendiente').count()
-    contar_cerrados = Ticket.objects.filter(estado='Cerrado').count()
+    contar_pendiente = Ticket.objects.filter(estado=1).count()
+    contar_cerrados = Ticket.objects.filter(estado=4).count()
     
     context_contar = {
         'contar_todos':contar_todos,
@@ -27,9 +27,9 @@ def ticket_contar(request):
     return {'ticket_contar': context_contar}
     
 def ticket_contar_prioridad(request):
-    prioridad_alta = Ticket.objects.filter(criticidad = 'Alta').count()
-    prioridad_media = Ticket.objects.filter(criticidad = 'Media').count()
-    prioridad_baja = Ticket.objects.filter(criticidad = 'Baja').count()
+    prioridad_alta = Ticket.objects.filter(criticidad = 1).count()
+    prioridad_media = Ticket.objects.filter(criticidad = 2).count()
+    prioridad_baja = Ticket.objects.filter(criticidad = 3).count()
        
     
     contar_prioridad= {
@@ -42,11 +42,11 @@ def ticket_contar_prioridad(request):
     
 
 def ticket_prioridad(request):
-    ticket_prioridad = Ticket.objects.filter(criticidad = 'Alta').order_by('-fecha_creacion')[:5]
+    ticket_prioridad = Ticket.objects.filter(criticidad = 1).order_by('-fecha_creacion')[:5]
     return {'ticket_prioridad': ticket_prioridad}
 
 def ticket_pendiente(request):
-    ticket_pendiente = Ticket.objects.filter(estado = 'Pendiente').order_by('-fecha_creacion')[:5]
+    ticket_pendiente = Ticket.objects.filter(estado = 1).order_by('-fecha_creacion')[:5]
     return {'ticket_pendiente': ticket_pendiente}
 
 

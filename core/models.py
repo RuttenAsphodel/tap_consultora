@@ -12,14 +12,6 @@ class Usuario(models.Model):
     def __str__(self):
         return self.nombre + " " + self.apellido    
 
-# Modelo de Datos Area 
-class Area(models.Model):
-    nombre_area = models.CharField(max_length=255, blank=False)
-
-# Modelo de Datos Criticidad
-class Criticidad(models.Model):
-    nombre_criticidad = models.CharField(max_length=255, blank=False)
-
 
 
 # Modelo de datos Tickets
@@ -27,11 +19,40 @@ class Ticket(models.Model):
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     cliente = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='tickets_creados')
     ejecutivo = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='tickets_asignados')
-    area = models.CharField(max_length=255, choices=[('Ejecutivo Telefonico', 'Ejecutivo Telefonico'), ('Soporte', 'Soporte'), ('Atencion al Cliente', 'Atencion al Cliente'), ('Soporte Nivel 2', 'Soporte Nivel 2')])
-    tipo = models.CharField(max_length=255, choices=[('Incidente', 'Incidente'), ('Solicitud', 'Solicitud'), ('Cambio', 'Cambio')])
-    criticidad = models.CharField(max_length=255, choices=[('Alta', 'Alta'), ('Media', 'Media'), ('Baja', 'Baja')])
-    estado = models.CharField(max_length=255, choices=[('Pendiente', 'Pendiente'), ('Solucionado', 'Solucionado'), ('Validado', 'Validado'), ('Cerrado', 'Cerrado')], default='Pendiente')
+    area = models.ForeignKey("Area", on_delete=models.CASCADE, verbose_name="Area", default = 'Ejecutivo Telefonico')
+    tipo = models.ForeignKey("Tipo", on_delete=models.CASCADE, verbose_name="Tipo",default='Solicitud')
+    criticidad = models.ForeignKey("Criticidad", on_delete=models.CASCADE, verbose_name="Criticidad",default='Media')
+    estado = models.ForeignKey("Estado", on_delete=models.CASCADE, verbose_name="Estado", default=1)
     descripcion = models.TextField()
     observaciones = models.TextField(blank=True)
 
+# Modelo de Datos Area 
+class Area(models.Model):
+    nombre_area = models.CharField(max_length=255, blank=False)
+    
+    def __str__(self):
+        return self.nombre_area
 
+
+# Modelo de datos Tipo
+class Tipo(models.Model):
+    tipo_ticket = models.CharField(max_length=50, blank=False)
+    
+    def __str__(self) :
+        return self.tipo_ticket
+    
+    
+# Modelo de Datos Criticidad
+class Criticidad(models.Model):
+    nombre_criticidad = models.CharField(max_length=255, blank=False)
+    
+    def __str__(self):
+        return self.nombre_criticidad
+
+
+# Modelo de datos EstadoTicket
+class Estado(models.Model):
+    estado_ticket = models.CharField(max_length=55, blank=False)
+    
+    def __str__(self):
+        return self.estado_ticket
