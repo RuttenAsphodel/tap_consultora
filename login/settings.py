@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-0t%eq8mox7xtk71p02b03dgh3=bz&cvum73zx**^4gbvts+z(1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://tap-consultora.azurewebsites.net']
 
 
 # Application definition
