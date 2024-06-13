@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-0t%eq8mox7xtk71p02b03dgh3=bz&cvum73zx**^4gbvts+z(1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['tap-consultora.azurewebsites.net']
+# ALLOWED_HOSTS = ['tap-consultora.azurewebsites.net']
+ALLOWED_HOSTS = ['10.13.99.82','127.0.0.1']
+
 
 
 # Application definition
@@ -40,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    'bootstrap5'
 
 ]
 
@@ -133,6 +136,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # VARIABLOS DE REDIRECCION DE LOGIN Y LOGOUT
 
+LOGIN_URL = 'home'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 

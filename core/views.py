@@ -4,7 +4,7 @@ from django.contrib.auth import logout, login
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib import messages
 
-from core.forms import FormCrearUsuario, FormEditarUsuario, FormCrearTicket, FormEditarTicket
+from .forms import FormCrearUsuario, FormEditarUsuario, FormCrearTicket, FormEditarTicket
 from .models import Usuario, Ticket
 
 # Create your views here.
@@ -98,22 +98,22 @@ def eliminar_usuario_logico(request, id):
         messages.error(request, 'El usuario ya está eliminado.')
     return redirect('listar_usuarios')
 
-# Decorator login_required para validar el usuario antes de ejecutar la vista Tickets
-@login_required
 # Vistas Ticket
 # Vista Mostrar Tickets
+# Decorator login_required para validar el usuario antes de ejecutar la vista Tickets
 
+@login_required
 def vista_listar_tickets(request):
     tickets = Ticket.objects.all()
     return render(request, 'core/tickets/listar_tickets.html', {'tickets': tickets})
     
-    
-
+# Decorator login_required para validar el usuario antes de ejecutar la vista Tickets
+@login_required
 def vista_detalle_ticket(request, id):
     ticket = get_object_or_404(Ticket, id=id)
     return render(request, 'core/tickets/detalle_ticket.html', {'ticket': ticket})
 
-
+@login_required
 def vista_crear_ticket(request):
     if request.method == 'POST':
         # Filtrar ejecutivos disponibles solo si el usuario es cliente
@@ -122,7 +122,13 @@ def vista_crear_ticket(request):
         # else:
         form = FormCrearTicket(request.POST)
         if form.is_valid():
-            form.save()
+            # Guardamos el ticket en BD sin confirmar aun
+            nuevo_ticket = form.save(commit=False)
+            # Asignamos el ticket al usuario autenticado
+            nuevo_ticket.user = request.user
+            # Guardamos el ticket con el usuario autenticado
+            nuevo_ticket.save()
+            # Redirige a la lista de tickets
             return redirect('tickets')
     else:
         # Filtrar ejecutivos disponibles solo si el usuario es cliente
@@ -155,7 +161,55 @@ def exit(request):
     logout(request)
     return redirect('home')
 
+# Vista de Login
+def login_view(request):
+    # Verificar si el usuario ya está autenticado
+    if request.user.is_authenticated:
+        return redirect('home')
+    # Verificamos si se envió el formulario
+    if request.method == 'POST':
+        # Creamos un formulario con los datos enviados
+        form = AuthenticationForm(request,data=request.POST)
+        # Verificamos si el formulario es válido
+        if form.is_valid():
+            # Autenticamos al usuario
+            user = form.get_user()
+            # Iniciamos sesión
+            login(request, user)
+            # Obtenemos la URL a la que se debe redireccionar
+            next_url = request.GET.get('next', '/home/')
+            # Redireccionamos a la página principal o a la URL
+            return redirect(next_url)
+    else:
+        # Creamos un formulario vacío
+        form = AuthenticationForm()
+    # Creamos el contenido de la respuesta
+    context = {'form': form}
+    # Creamos la respuesta
+    return render(request, 'registration/login.html', context)
 
+# Vista de Registro de Usuario
+def register_view(request):
+    # Verificar si el usuario ya está autenticado
+    if request.user.is_authenticated:
+        return redirect('home')
+    # Verificamos si se envió el formulario
+    if request.method == 'POST':
+        # Creamos un formulario con los datos enviados
+        form = UserCreationForm(request.POST)
+        # Verificamos si el formulario es válido
+        if form.is_valid():
+            # Guardamos el usuario
+            form.save()
+            # Redirigimos al usuario a la página de inicio de sesión
+            return redirect('login')
+    else:
+        # Creamos un formulario vacío
+        form = UserCreationForm()
+    # Creamos el contenido de la respuesta
+    context = {'form': form}
+    # Creamos la respuesta
+    return render(request, 'registration/register.html', context)
 
 # Vistas para Gabriel Mena
 

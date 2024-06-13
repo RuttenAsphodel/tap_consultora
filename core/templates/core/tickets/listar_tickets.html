@@ -15,6 +15,7 @@ class="table-responsive small"
         <tr>
             <th>ID</th>
             <th>Fecha Creación</th>
+            <th>Usuario</th>
             <th>Cliente</th>
             <th>Ejecutivo</th>
             <th>Área</th>
@@ -29,6 +30,7 @@ class="table-responsive small"
         <tr>
             <td>{{ ticket.id }}</td>
             <td>{{ ticket.fecha_creacion | date:"d/m/Y H:i:s" }}</td>
+            <td>{{ ticket.usuario }}
             <td>{{ ticket.cliente.nombre }} {{ ticket.cliente.apellido }}</td>
             <td>{{ ticket.ejecutivo.nombre }} {{ ticket.ejecutivo.apellido }}</td>
             <td>{{ ticket.area }}</td>

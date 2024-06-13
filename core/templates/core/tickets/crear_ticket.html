@@ -1,9 +1,10 @@
 {% extends 'core/base.html' %}
+{% load bootstrap5 %}
 
 {% block content %}
 
 <h3> Crear Ticket </h3>
-<!-- {% if request.user.is_authenticated %} -->
+ {% if request.user.is_authenticated %} 
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -15,12 +16,13 @@
 
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        {% bootstrap_form form layout='horizontal' %}
         <button type="submit">Crear ticket</button>
     </form>
 </body>
 </html>
 
-<!-- {% endif %} -->
+{% endif %}
+
 
 {% endblock %}

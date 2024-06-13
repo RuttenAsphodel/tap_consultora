@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import home, vista_listar_tickets, vista_listar_usuarios, vista_crear_usuario, vista_detalle_usuario, eliminar_usuario_logico,vista_crear_ticket, vista_detalle_ticket,vista_editar_ticket ,exit
+from .views import home, vista_listar_tickets, vista_listar_usuarios, vista_crear_usuario, vista_detalle_usuario, eliminar_usuario_logico,vista_crear_ticket, vista_detalle_ticket,vista_editar_ticket ,exit, login_view, register_view
 
 urlpatterns = [
     path('', home, name = 'home'),
@@ -16,6 +16,7 @@ urlpatterns = [
     path('crear_usuario/', vista_crear_usuario, name='crear_usuario'),
     path('<int:id>/detalle_usuario', vista_detalle_usuario, name='detalle_usuario'),
     path('<int:id>/eliminar_usuario', eliminar_usuario_logico, name='eliminar_usuario'),
-    
+    path('login/', login_view, name='login'),
+    path('register/', register_view, name='register'),
     path('logout/', exit, name='exit')    
 ]

@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
     
 # Modelo de datos Usuarios
@@ -13,7 +14,7 @@ class Usuario(models.Model):
         return self.nombre + " " + self.apellido    
 
 
-
+    
 # Modelo de datos Tickets
 class Ticket(models.Model):
     fecha_creacion = models.DateTimeField(auto_now_add=True)
@@ -25,6 +26,9 @@ class Ticket(models.Model):
     estado = models.ForeignKey("Estado", on_delete=models.CASCADE, verbose_name="Estado", default=1)
     descripcion = models.TextField()
     observaciones = models.TextField(blank=True)
+    usuario = models.ForeignKey(User,on_delete=models.CASCADE, verbose_name='Usuario', null=True)
+    
+
 
 # Modelo de Datos Area 
 class Area(models.Model):
