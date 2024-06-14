@@ -169,7 +169,7 @@ def login_view(request):
     # Verificamos si se envió el formulario
     if request.method == 'POST':
         # Creamos un formulario con los datos enviados
-        form = AuthenticationForm(request,data=request.POST)
+        form = AuthenticationForm(request, data=request.POST)
         # Verificamos si el formulario es válido
         if form.is_valid():
             # Autenticamos al usuario
@@ -182,7 +182,7 @@ def login_view(request):
             return redirect(next_url)
     else:
         # Creamos un formulario vacío
-        form = AuthenticationForm()
+        form = AuthenticationForm(request)
     # Creamos el contenido de la respuesta
     context = {'form': form}
     # Creamos la respuesta

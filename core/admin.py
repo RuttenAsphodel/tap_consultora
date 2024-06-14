@@ -10,7 +10,7 @@ admin.site.register(Estado)
 
 class TicketAdmin(admin.ModelAdmin):
     list_display = ('id', 
-                    'usuario', 
+                    'user', 
                     'fecha_creacion',
                     'cliente',
                     'ejecutivo',
