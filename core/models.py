@@ -26,7 +26,7 @@ class Ticket(models.Model):
     estado = models.ForeignKey("Estado", on_delete=models.CASCADE, verbose_name="Estado", default=1)
     descripcion = models.TextField()
     observaciones = models.TextField(blank=True)
-    usuario = models.ForeignKey(User,on_delete=models.CASCADE, verbose_name='Usuario', null=True)
+    user = models.ForeignKey(User,on_delete=models.CASCADE, verbose_name='Usuario', null=True)
     
 
 
