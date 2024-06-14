@@ -182,7 +182,7 @@ def login_view(request):
             return redirect(next_url)
     else:
         # Creamos un formulario vacío
-        form = AuthenticationForm()
+        form = AuthenticationForm(request)
     # Creamos el contenido de la respuesta
     context = {'form': form}
     # Creamos la respuesta
