@@ -1,11 +1,11 @@
 from django import forms
-from .models import Usuario, Ticket
+from .models import Usuario, Ticket, Comentarios, Profile
 
 # Formularios Usuarios
 class FormCrearUsuario(forms.ModelForm):
     class Meta:
         model = Usuario
-        fields = ['nombre', 'apellido', 'email', 'contrasena', 'rol']
+        fields = ['nombre', 'apellido', 'email', 'contrasena', 'group']
         widgets = {
             'nombre: ': forms.TextInput(attrs={
                 'placeholder': 'Nombre del Usuario'
@@ -102,10 +102,25 @@ class FormCrearTicket(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['cliente'].queryset = Usuario.objects.filter(rol='Cliente')
-        self.fields['ejecutivo'].queryset = Usuario.objects.filter(rol='Ejecutivo')
+        self.fields['cliente'].queryset = Profile.objects.filter(group=3)
+        self.fields['ejecutivo'].queryset = Profile.objects.filter(group=2)
 
 class FormEditarTicket(forms.ModelForm):
     class Meta:
         model = Ticket
         fields = ['area', 'tipo', 'criticidad', 'estado', 'descripcion', 'observaciones']
+
+
+class FormCrearComentario(forms.ModelForm):
+    class Meta:
+        model = Comentarios
+        fields = ['ticket','user','comentario']
+        
+
+class FormConfigProfile(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['nombre','apellido', 'email', 'group','location' ]
+
+
+

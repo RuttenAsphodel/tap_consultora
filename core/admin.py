@@ -7,6 +7,7 @@ admin.site.register(Area)
 admin.site.register(Tipo)
 admin.site.register(Criticidad)
 admin.site.register(Estado)
+admin.site.register(Profile)
 
 class TicketAdmin(admin.ModelAdmin):
     list_display = ('id', 

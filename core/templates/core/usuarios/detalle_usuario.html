@@ -10,7 +10,7 @@
     
     <div class="container-sm">     
         <ul class="list-group list-group ">
-            <li class="list-group-item list-group-flush active alert"><h4>Detalle de Usuario  - {{ usuario.nombre }} {{ usuario.apellido }}</h4></li>
+            <li class="list-group-item list-group-flush active alert"><h4>Detalle de Usuario  - {{ profile.nombre }} {{ profile.apellido }}</h4></li>
             <list-group class="list-group-horizontal-sm">
                 <li class="list-group-item alert">
                     <div class="mb-2 row">
@@ -20,7 +20,7 @@
                 
                         <label
                         for="ID"
-                        class="col-8 col-form-label-sm">{{ usuario.id }}</label>     
+                        class="col-8 col-form-label-sm">{{ profile.user }}</label>     
               
                     </div>
                 </li>
@@ -33,7 +33,7 @@
                         ><strong>Nombre Completo</strong></label>
                     <label
                     for="Nombre"
-                    class="col-8 col-form-label-sm">{{ usuario.nombre }} {{ usuario.apellido }}</label>    
+                    class="col-8 col-form-label-sm">{{ profile.nombre }} {{ profile.apellido }}</label>    
                     </div>
                 </li>
                 
@@ -45,7 +45,7 @@
                         ><strong>Correo Electronico</strong></label>
                     <label
                         for="email"
-                        class="col-8 col-form-label-sm">{{ usuario.email }}</label>    
+                        class="col-8 col-form-label-sm">{{ profile.email }}</label>    
                     </div>
                 </li>
 
@@ -57,7 +57,7 @@
                         ><strong>Rol</strong></label>
                     <label
                         for="rol"
-                        class="col-8 col-form-label-sm">{{ usuario.rol }}</label>    
+                        class="col-8 col-form-label-sm">{{ profile.group }}</label>    
                     </div>
                 </li>
 
@@ -81,7 +81,7 @@
                 </thead>
                 <tbody class="small">
                  
-                    {% for ticket in usuario.tickets_creados.all %}
+                    {% for ticket in profile.tickets_creados.all %}
                     <tr>
                         <td>{{ ticket.id }}</td>
                         <td>{{ ticket.cliente.nombre }} {{ ticket.cliente.apellido }}</td>
@@ -110,7 +110,7 @@
                 </thead>
                 <tbody class="small">
                  
-                    {% for ticket in usuario.tickets_asignados.all %}
+                    {% for ticket in profile.tickets_asignados.all %}
                     <tr>
                         <td>{{ ticket.id }}</td>
                         <td>{{ ticket.ejecutivo.nombre }} {{ ticket.ejecutivo.apellido}}</td>

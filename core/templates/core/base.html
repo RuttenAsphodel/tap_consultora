@@ -24,13 +24,13 @@
                   <li class="nav-item">
                     <a class="nav-link text-white" aria-current="page" href={% url 'tickets' %}>Tickets</a>
                   </li>
-                  <li class="nav-item">
+                  {% comment %} <li class="nav-item">
                     <a class="nav-link text-white" aria-current="page" href={% url 'listar_usuarios' %}>Usuarios</a>
-                  </li>
+                  </li> {% endcomment %}
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-white" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administrar</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href="#">Roles Usuario</a>
+                        <a class="dropdown-item" href={% url 'listar_usuarios' %}>Usuarios</a>
                         <a class="dropdown-item" href="#">Estados Usuario</a>
                         <a class="dropdown-item" href="#">Departamentos</a>
                         <a class="dropdown-item" href="#">Prioridades Ticket</a>

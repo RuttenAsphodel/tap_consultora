@@ -5,7 +5,7 @@
 <h3> Administracion de Usuarios </h3>
 <!-- {% if request.user.is_authenticated %} -->
 
-    <a href="{% url 'crear_usuario' %}">Crear nuevo usuario</a>
+    {% comment %} <a href="{% url 'crear_usuario' %}">Crear nuevo usuario</a> {% endcomment %}
 
     <div
         class="table-responsive small"
@@ -16,6 +16,7 @@
             <thead class="thead-light table-active table-dark">
 
                 <tr>
+                    <th class="border-0">Usuario</th>
                     <th class="border-0">Nombre</th>
                     <th class="border-0">Apellido</th>
                     <th class="border-0">Correo</th>
@@ -24,23 +25,22 @@
                 </tr>
             </thead>
             <tbody>
-                {% for usuario in usuarios %}
-                <tr
-                >
-                    <td>{{ usuario.nombre }}</td>
-                    <td>{{ usuario.apellido}}</td>
-                    <td>{{ usuario.email }}</td>
-                    <td>{{ usuario.rol }}</td>
+                {% for profile in profiles %}
+                <tr>
+                    <td>{{ profile.user }}</td>
+                    <td>{{ profile.nombre }}</td>
+                    <td>{{ profile.apellido}}</td>
+                    <td>{{ profile.email }}</td>
+                    <td>{{ profile.group }}</td>
                     <td>
-                        
-                        <a href="{% url 'detalle_usuario' usuario.pk %}" target = "_blank">Ver detalle</a> |
-                        <a href="{% url 'eliminar_usuario' usuario.pk %}">Eliminar</a>    
+                        <a href="{% url 'detalle_usuario' profile.pk %}" target = "_blank">Ver detalle</a> |
+                        <a href="{% url 'crear_usuario' profile.pk %}">Configurar Perfil</a> |
+                        <a href="{% url 'eliminar_usuario' profile.pk %}">Eliminar</a>    
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
-            <tfoot>
-                
-            </tfoot>
+
         </table>
     </div>
         

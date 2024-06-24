@@ -4,8 +4,8 @@ from django.contrib.auth import logout, login
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib import messages
 
-from .forms import FormCrearUsuario, FormEditarUsuario, FormCrearTicket, FormEditarTicket
-from .models import Usuario, Ticket
+from .forms import FormCrearUsuario, FormEditarUsuario, FormCrearTicket, FormEditarTicket, FormConfigProfile
+from .models import Usuario, Ticket, Profile
 
 # Create your views here.
 # Decorator login_required para validar el usuario antes de ejecutar la vista Usuarios
@@ -64,32 +64,33 @@ def home(request):
 @login_required
 # Vista Listar Usuarios
 def vista_listar_usuarios(request):
-    usuarios = Usuario.objects.filter(is_active=True)
-    return render(request, 'core/usuarios/listar_usuarios.html', {'usuarios': usuarios})
+    profiles = Profile.objects.filter(is_active=True)
+    return render(request, 'core/usuarios/listar_usuarios.html', {'profiles': profiles})
     
 
-# Vista Creacion Usuarios
-def vista_crear_usuario(request):
+# Vista Configuracion Perfil de Usuarios
+def vista_crear_usuario(request, id):
+    profile = get_object_or_404(Profile, id=id)
+
     if request.method == 'POST':
-        form = FormCrearUsuario(request.POST)
+        form = FormConfigProfile(request.POST, instance=profile)
         if form.is_valid():
             form.save()
             return redirect('listar_usuarios')
     else:
-        form = FormCrearUsuario()
+        form = FormConfigProfile()
 
-    return render(request, 'core/usuarios/crear_usuario.html', {'form': form})
-
+    return render(request, 'core/usuarios/crear_usuario.html', {'form': form, 'profile': profile})
 
 # Vista Detalle de Usuario
 def vista_detalle_usuario(request, id):
-    usuario = get_object_or_404(Usuario, id=id)
-    return render(request, 'core/usuarios/detalle_usuario.html', {'usuario': usuario})
+    profile = get_object_or_404(Profile, id=id)
+    return render(request, 'core/usuarios/detalle_usuario.html', {'profile': profile})
 
 
 # Vista Eliminar Usuario
 def eliminar_usuario_logico(request, id):
-    usuario = get_object_or_404(Usuario, id=id)
+    usuario = get_object_or_404(Profile, id=id)
     if usuario.is_active:
         usuario.is_active = False
         usuario.save()

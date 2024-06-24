@@ -13,9 +13,11 @@ urlpatterns = [
     
     # Urls Usuarios
     path('listar_usuarios/', vista_listar_usuarios, name='listar_usuarios'),
-    path('crear_usuario/', vista_crear_usuario, name='crear_usuario'),
+    path('<int:id>/crear_usuario/', vista_crear_usuario, name='crear_usuario'),
     path('<int:id>/detalle_usuario', vista_detalle_usuario, name='detalle_usuario'),
     path('<int:id>/eliminar_usuario', eliminar_usuario_logico, name='eliminar_usuario'),
+    
+    # Urls Login
     path('login/', login_view, name='login'),
     path('register/', register_view, name='register'),
     path('logout/', exit, name='exit')    

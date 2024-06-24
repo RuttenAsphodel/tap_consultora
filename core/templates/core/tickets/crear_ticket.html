@@ -3,7 +3,6 @@
 
 {% block content %}
 
-<h3> Crear Ticket </h3>
  {% if request.user.is_authenticated %} 
 <!DOCTYPE html>
 <html lang="es">
@@ -12,13 +11,26 @@
     <title>Crear Ticket</title>
 </head>
 <body>
-    <h1>Crear Ticket</h1>
+    <div class="col">
+        <div class="card border-dark mb-3 text-left p-1" style="max-width: auto;">
+            <div class="card-body p-0">
+                <div class="card-text text-bg-dark text-center p-2">
+                    <h5 class="card-text text-white">Crear Ticket</h5>
+     
+                </div>
+    
+                <div class="card-body">
+                     <form method="post">
+                        {% csrf_token %}
+                        {% bootstrap_form form layout='horizontal' %}
+                        <button type="submit" class='btn btn-primary'>Crear ticket</button>
+                    </form>
+                </div>
+            </div>
+        </div>   
+    </div>
 
-    <form method="post">
-        {% csrf_token %}
-        {% bootstrap_form form layout='horizontal' %}
-        <button type="submit">Crear ticket</button>
-    </form>
+
 </body>
 </html>
 
