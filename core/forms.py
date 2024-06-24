@@ -1,7 +1,7 @@
 from django import forms
 from .models import Usuario, Ticket, Comentarios, Profile
 
-# Formularios Usuarios
+# Formularios Usuarios no usar
 class FormCrearUsuario(forms.ModelForm):
     class Meta:
         model = Usuario
@@ -110,13 +110,14 @@ class FormEditarTicket(forms.ModelForm):
         model = Ticket
         fields = ['area', 'tipo', 'criticidad', 'estado', 'descripcion', 'observaciones']
 
-
+# Formulario de Comentario (x desarrollar)
 class FormCrearComentario(forms.ModelForm):
     class Meta:
         model = Comentarios
         fields = ['ticket','user','comentario']
         
 
+# Formulario de Configuracion de Perfiles
 class FormConfigProfile(forms.ModelForm):
     class Meta:
         model = Profile
