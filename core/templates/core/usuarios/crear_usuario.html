@@ -7,30 +7,32 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Crear Usuario</title>
+    <title>Configurar Perfil de Usuario</title>
 </head>
 <body>
-    <div class="container">
-        <h3> Configurar Perfil {{ profile.user }} </h3>
-    
-    </div>
-    
+    <div class="row row-cols-1 row-cols-md-1 g-1">
+        <div class="col">
+            <div class="card border-dark mb-3 text-left p-1" style="max-width: auto;">
+                <div class="card bg-danger">
+                    <h5 class="text-white text-center p-2">Configurar Perfil {{ profile.user }} </h5>
+                </div>
+                <div class="container mb-4 p-4">
+                        
+                    <form method="post">
 
-    <div class="container">
-        <form method="post">
-
-            {% csrf_token %}
-            {% bootstrap_form form layout='horizontal' %}
-        
-            <div class="container mb-4">
-                <button type="submit" class="btn btn-primary">
-                    Guardar Cambios
-                </button>
+                        {% csrf_token %}
+                        {% bootstrap_form form layout='horizontal' %}
+                    
+                        
+                        <button type="submit" class="btn btn-primary">
+                            Guardar Cambios
+                        </button>
+                    </div>
+                </form>
+                </div>
             </div>
-        </form>
+        </div>
     </div>
-
-
 
     <a href="{% url 'listar_usuarios' %}">Volver a la lista de usuarios</a>
 </body>

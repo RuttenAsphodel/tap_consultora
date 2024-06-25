@@ -108,7 +108,12 @@ class FormCrearTicket(forms.ModelForm):
 class FormEditarTicket(forms.ModelForm):
     class Meta:
         model = Ticket
-        fields = ['area', 'tipo', 'criticidad', 'estado', 'descripcion', 'observaciones']
+        fields = ['ejecutivo','estado', 'descripcion', 'observaciones']
+
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['ejecutivo'].queryset = Profile.objects.filter(group=2)
 
 # Formulario de Comentario (x desarrollar)
 class FormCrearComentario(forms.ModelForm):
