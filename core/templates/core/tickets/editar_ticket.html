@@ -3,17 +3,28 @@
 
 {% block content %}
 
-<h3> Editar Ticket </h3>
+
 {% if request.user.is_authenticated %}
+<div class="row row-cols-1 row-cols-md-1 g-1">
+    <div class="col">
+        <div class="card border-dark mb-3 text-left p-1" style="max-width: auto;">
+            <div class="card bg-success">
+                <h5 class="text-white text-center p-1">Actualizar Ticket</h5>
+            </div>
+            <div class="p-2">
+                <form method="post">
+                    {% csrf_token %}
+                    {% bootstrap_form form layout='horizontal' %}
+                    <button type="submit" class="btn btn-success">Guardar cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-    <h1>Editar Ticket</h1>
 
-    <form method="post">
-        {% csrf_token %}
-        {% bootstrap_form form layout='horizontal' %}
-        <button type="submit">Guardar cambios</button>
-    </form>
+
 
 
 {% endif %}

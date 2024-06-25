@@ -23,10 +23,12 @@
                         {% csrf_token %}
                         {% bootstrap_form form layout='horizontal' %}
                     
-                        
+                        <hr>
                         <button type="submit" class="btn btn-primary">
                             Guardar Cambios
-                        </button>
+                        </button> |
+                        <a href="{% url 'listar_usuarios' %}" class="btn btn-danger">Volver a la lista de usuarios</a>
+
                     </div>
                 </form>
                 </div>
@@ -34,7 +36,6 @@
         </div>
     </div>
 
-    <a href="{% url 'listar_usuarios' %}">Volver a la lista de usuarios</a>
 </body>
 
 <!-- {% endif %} -->

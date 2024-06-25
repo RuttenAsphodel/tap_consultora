@@ -23,7 +23,9 @@
                      <form method="post">
                         {% csrf_token %}
                         {% bootstrap_form form layout='horizontal' %}
-                        <button type="submit" class='btn btn-primary'>Crear ticket</button>
+                        <hr>
+                        <button type="submit" class='btn btn-primary'>Crear ticket</button> | 
+                        <a href="{% url 'tickets' %}" class="btn btn-danger">Cancelar</a>
                     </form>
                 </div>
             </div>
