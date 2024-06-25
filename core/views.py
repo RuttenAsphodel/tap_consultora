@@ -220,4 +220,4 @@ def register_view(request):
 
 # Vistas CRUD Tipo
 
-# Vistas CRUD Estaoo
+# Vistas CRUD Estado
