@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'login.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-
+"""
 DATABASES = {
 
     'default': {
@@ -92,7 +92,19 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+"""
 
+DATABASES = {  
+    'default': {  
+        'ENGINE': 'django.db.backends.mysql',  
+        'NAME': 'db-q0barz3p4xym',  
+        'USER': 'db-q0barz3p4xym',  
+        'PASSWORD': '1HquQS41BpGZJOM1pbNDBLdl',  
+        'HOST': 'up-de-fra1-mysql-1.db.run-on-seenode.com',  
+        'PORT': '11550',  
+     }  
+    
+}  
 
 
 # Password validation
