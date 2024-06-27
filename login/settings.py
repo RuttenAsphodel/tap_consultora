@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-0t%eq8mox7xtk71p02b03dgh3=bz&cvum73zx**^4gbvts+z(1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # ALLOWED_HOSTS = ['tap-consultora.azurewebsites.net']
 ALLOWED_HOSTS = ['10.13.99.82','127.0.0.1', 'web-3ie7hubrqz59.up-de-fra1-k8s-1.apps.run-on-seenode.com']
@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
-    'bootstrap5'
+    'bootstrap5', 
+    'corsheaders',
 
 ]
 
@@ -56,6 +57,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'login.urls'
@@ -136,8 +139,10 @@ STATIC_URL = '/core/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# VARIABLOS DE REDIRECCION DE LOGIN Y LOGOUT
+# CSRF FIX
+CSRF_TRUSTED_ORIGINS = ['https://domain.name']
 
+# VARIABLOS DE REDIRECCION DE LOGIN Y LOGOUT
 LOGIN_URL = 'home'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'

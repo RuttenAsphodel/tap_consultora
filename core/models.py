@@ -108,12 +108,12 @@ class Comentarios(models.Model):
 # Perfil de usuario extendido Django
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    nombre = models.CharField(max_length=255, blank=True)
+    nombre = models.CharField(max_length=255, blank=True, null=True)
     apellido = models.CharField(max_length=255, null=True, blank=True)
     email = models.EmailField(unique=True, blank=True)
     group = models.ForeignKey(Group, on_delete=models.CASCADE, verbose_name='Rol', default=2)
-    is_active = models.BooleanField(default=True)
-    location = models.CharField(max_length=30, blank=True)
+    is_active = models.BooleanField(default=True, null=True)
+    location = models.CharField(max_length=30, blank=True, null=True)
     
     
 
