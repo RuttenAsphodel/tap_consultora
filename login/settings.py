@@ -140,7 +140,7 @@ STATIC_URL = '/core/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CSRF FIX
-CSRF_TRUSTED_ORIGINS = ['https://web-3ie7hubrqz59.up-de-fra1-k8s-1.apps.run-on-seenode.com/name']
+CSRF_TRUSTED_ORIGINS = ['https://web-3ie7hubrqz59.up-de-fra1-k8s-1.apps.run-on-seenode.com']
 
 # VARIABLOS DE REDIRECCION DE LOGIN Y LOGOUT
 LOGIN_URL = 'home'
