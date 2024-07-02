@@ -38,6 +38,18 @@
                         <a class="dropdown-item" href="#">Categorias Ticket</a>
                     </div>
                 </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle text-white" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Informes</a>
+                  <div class="dropdown-menu" aria-labelledby="dropdownId">
+                      <a class="dropdown-item" href="#">Tickets por Ejecutivos</a>
+                      <a class="dropdown-item" href="#">Solicitudes Diarias</a>
+                      <a class="dropdown-item" href="#">Cerrados por Dia</a>
+                  </div>
+              </li>
+                <li>
+                  <a class="nav-link text-white" aria-current="page" href="#">Terminos y Condiciones</a>
+
+                </li>
 
                 {% if request.user.is_authenticated %}
                     <li class="nav-item">
@@ -82,5 +94,9 @@
       integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
     </script>
     
+
+    <footer>
+
+    </footer>
 </body>
 </html>
