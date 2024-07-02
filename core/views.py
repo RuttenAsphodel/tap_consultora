@@ -4,8 +4,8 @@ from django.contrib.auth import logout, login
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib import messages
 
-from .forms import FormCrearUsuario, FormEditarUsuario, FormCrearTicket, FormEditarTicket, FormConfigProfile
-from .models import Usuario, Ticket, Profile
+from .forms import FormCrearUsuario, FormEditarUsuario, FormCrearTicket, FormEditarTicket, FormConfigProfile, FormCrearArea, FormCrearCriticidad, FormCrearTipo, FormCrearEstado
+from .models import Usuario, Ticket, Profile, Area, Criticidad, Tipo, estado
 
 # Create your views here.
 # Decorator login_required para validar el usuario antes de ejecutar la vista Usuarios
@@ -216,8 +216,64 @@ def register_view(request):
 
 # Vistas CRUD Area
 
+@login_required
+def vista_crear_area(request):
+    if request.method == 'POST':
+
+        form = FormCrearArea(request.POST)
+        if form.is_valid():
+            nuevo_Area = form.save(commit=False)
+            nuevo_Area.user = request.user
+            nuevo_Area.save()
+            return redirect('tickets')
+    else:
+        form = FormCrearArea()
+
+    return render(request, 'core/tickets/crear_ticket.html', {'form': form})
+
 # Vistas CRUD Criticidad
 
+def vista_crear_criticidad(request):
+    if request.method == 'POST':
+
+        form = FormCrearCriticidad(request.POST)
+        if form.is_valid():
+            nuevo_Criticidad = form.save(commit=False)
+            nuevo_Criticidad.user = request.user
+            nuevo_Criticidad.save()
+            return redirect('tickets')
+    else:
+        form = FormCrearCriticidad()
+
+    return render(request, 'core/tickets/crear_ticket.html', {'form': form})
+
 # Vistas CRUD Tipo
+def vista_crear_tipo(request):
+    if request.method == 'POST':
+
+        form = FormCrearTipo(request.POST)
+        if form.is_valid():
+            nuevo_Tipo = form.save(commit=False)
+            nuevo_Tipo.user = request.user
+            nuevo_Tipo.save()
+            return redirect('tickets')
+    else:
+        form = FormCrearTipo()
+
+    return render(request, 'core/tickets/crear_ticket.html', {'form': form})
 
 # Vistas CRUD Estado
+def vista_crear_estado(request):
+    if request.method == 'POST':
+
+        form = FormCrearEstado(request.POST)
+        if form.is_valid():
+            nuevo_Estado = form.save(commit=False)
+            nuevo_Estado.user = request.user
+            nuevo_Estado.save()
+            return redirect('tickets')
+    else:
+        form = FormCrearEstado()
+
+    return render(request, 'core/tickets/crear_ticket.html', {'form': form})
+
