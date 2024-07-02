@@ -119,60 +119,60 @@ class FormEditarTicket(forms.ModelForm):
 class FormCrearArea(forms.ModelForm):
     class Meta:
         model = Area
-        fields = ['nombre']
+        fields = ['nombre_area']
         widgets = {
-            'nombre: ': forms.TextInput(attrs={
+            'nombre_area: ': forms.TextInput(attrs={
                 'placeholder': 'Nombre del Area'
                 'required'
             })
         }
         labels = {
-            'nombre': 'Nombre del Area'
+            'nombre_area': 'Nombre del Area'
         }
 
 #form crear criticidad
 class FormCrearCriticidad(forms.ModelForm):
     class Meta:
         model = Criticidad
-        fields = ['nivel']
+        fields = ['nombre_criticidad']
         widgets = {
-            'nivel: ': forms.TextInput(attrs={
+            'nombre_criticidad: ': forms.TextInput(attrs={
                 'placeholder': 'nivel Criticidad'
                 'required'
             })
         }
         labels = {
-            'nivel': 'nivel criticidad'
+            'nombre_criticidad': 'nivel criticidad'
         }
 
 #form crear tipo
 class FormCrearTipo(forms.ModelForm):
     class Meta:
         model = Tipo
-        fields = ['tipo']
+        fields = ['tipo_ticket']
         widgets = {
-            'tipo: ': forms.TextInput(attrs={
+            'tipo_ticket: ': forms.TextInput(attrs={
                 'placeholder': 'tipo ticket'
                 'required'
             })
         }
         labels = {
-            'tipo': 'tipo ticket'
+            'tipo_ticket': 'Tipo Ticket'
         }
 
 #form crear estado
 class FormCrearEstado(forms.ModelForm):
     class Meta:
         model = Estado
-        fields = ['estado']
+        fields = ['estado_ticket']
         widgets = {
-            'estado: ': forms.TextInput(attrs={
-                'placeholder': 'Estado ticket'
+            'estado_ticket: ': forms.TextInput(attrs={
+                'placeholder': 'Estado Ticket'
                 'required'
             })
         }
         labels = {
-            'estado': 'Estado ticket'
+            'estado_ticket': 'Estado Ticket'
         }
 
 

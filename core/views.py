@@ -5,7 +5,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib import messages
 
 from .forms import FormCrearUsuario, FormEditarUsuario, FormCrearTicket, FormEditarTicket, FormConfigProfile, FormCrearArea, FormCrearCriticidad, FormCrearTipo, FormCrearEstado
-from .models import Usuario, Ticket, Profile, Area, Criticidad, Tipo, estado
+from .models import Usuario, Ticket, Profile, Area, Criticidad, Tipo, Estado
 
 # Create your views here.
 # Decorator login_required para validar el usuario antes de ejecutar la vista Usuarios
