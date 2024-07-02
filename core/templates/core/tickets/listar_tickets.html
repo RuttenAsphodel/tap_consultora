@@ -25,6 +25,7 @@
                             <th>Tipo</th>
                             <th>Criticidad</th>
                             <th>Estado</th>
+                            <th>Fecha Cierre</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -40,6 +41,8 @@
                             <td>{{ ticket.tipo }}</td>
                             <td>{{ ticket.criticidad }}</td>
                             <td>{{ ticket.estado }}</td>
+                            <td>{{ ticket.fecha_cierre | date:"d/m/Y H:i:s" }}</td>
+
                             <td>
                                 <a href="{% url 'detalle_ticket' ticket.pk  %}" target='_blank'>Ver detalle</a> |
                                 <a href="{% url 'editar_ticket' ticket.pk %}">Editar</a>

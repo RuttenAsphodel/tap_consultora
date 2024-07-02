@@ -35,6 +35,7 @@ class Ticket(models.Model):
     estado = models.ForeignKey("Estado", on_delete=models.CASCADE, verbose_name="Estado", default=1)
     descripcion = models.TextField()
     observaciones = models.TextField(blank=True)
+    fecha_cierre = models.DateTimeField(auto_now=True)
     
     # Enlazado al modelo User de Django. 
     user = models.ForeignKey(User,on_delete=models.CASCADE, verbose_name='Usuario', null=True)
