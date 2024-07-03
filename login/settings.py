@@ -97,7 +97,7 @@ DATABASES = {
 }
 """
 
-# Conexion BD Console Cloud
+# Conexion BD Clever Cloud
 DATABASES = {  
     'default': {  
         'ENGINE': 'django.db.backends.mysql',  

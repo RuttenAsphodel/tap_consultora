@@ -4,15 +4,14 @@ from django.contrib.auth import logout, login
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib import messages
 
-from .forms import FormCrearUsuario, FormEditarUsuario, FormCrearTicket, FormEditarTicket, FormConfigProfile, FormCrearArea, FormCrearCriticidad, FormCrearTipo, FormCrearEstado
-from .models import Usuario, Ticket, Profile, Area, Criticidad, Tipo, Estado
+from .forms import FormCrearTicket, FormEditarTicket, FormConfigProfile, FormCrearArea, FormCrearCriticidad, FormCrearTipo, FormCrearEstado
+from .models import Ticket, Profile, Area, Criticidad, Tipo, Estado
 
 # Create your views here.
 # Decorator login_required para validar el usuario antes de ejecutar la vista Usuarios
 #@login_required
+
 # Vista de inicio
-
-
 def ticket_contar(request):
     contar_todos = Ticket.objects.all().count()
     contar_pendiente = Ticket.objects.filter(estado=1).count()
@@ -62,6 +61,7 @@ def home(request):
 
 # Decorator login_required para validar el usuario antes de ejecutar la vista Usuarios
 @login_required
+
 # Vista Listar Usuarios
 def vista_listar_usuarios(request):
     profiles = Profile.objects.filter(is_active=True)
@@ -88,7 +88,7 @@ def vista_detalle_usuario(request, id):
     return render(request, 'core/usuarios/detalle_usuario.html', {'profile': profile})
 
 
-# Vista Eliminar Usuario
+# Vista Eliminar Usuario Logico
 def eliminar_usuario_logico(request, id):
     usuario = get_object_or_404(Profile, id=id)
     if usuario.is_active:
@@ -100,21 +100,24 @@ def eliminar_usuario_logico(request, id):
     return redirect('listar_usuarios')
 
 # Vistas Ticket
-# Vista Mostrar Tickets
-# Decorator login_required para validar el usuario antes de ejecutar la vista Tickets
 
+# Decorator login_required para validar el usuario antes de ejecutar la vista Tickets
 @login_required
+
+# Vista Mostrar Tickets
 def vista_listar_tickets(request):
     tickets = Ticket.objects.all()
     return render(request, 'core/tickets/listar_tickets.html', {'tickets': tickets})
     
 # Decorator login_required para validar el usuario antes de ejecutar la vista Tickets
 @login_required
+# Vista de Detalle de Tickets
 def vista_detalle_ticket(request, id):
     ticket = get_object_or_404(Ticket, id=id)
     return render(request, 'core/tickets/detalle_ticket.html', {'ticket': ticket})
 
 @login_required
+# Vista de Creacion del Ticket
 def vista_crear_ticket(request):
     if request.method == 'POST':
         # Filtrar ejecutivos disponibles solo si el usuario es cliente
@@ -140,6 +143,7 @@ def vista_crear_ticket(request):
 
     return render(request, 'core/tickets/crear_ticket.html', {'form': form})
 
+# Vista de Actualizacion del Ticket
 @login_required
 def vista_editar_ticket(request, id):
     ticket = get_object_or_404(Ticket, id=id)
@@ -157,7 +161,7 @@ def vista_editar_ticket(request, id):
 
     return render(request, 'core/tickets/editar_ticket.html', {'form': form, 'ticket': ticket})
 
-
+# Vista de Cierre de Sesion
 def exit(request):
     logout(request)
     return redirect('home')

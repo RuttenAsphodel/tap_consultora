@@ -3,22 +3,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
     
-# Modelo de datos Usuarios
-# No usar, se utilizara el modelo de Profiles, que extiende el modelo User de Django, para el inicio de sesiones
-class Usuario(models.Model):
-    nombre = models.CharField(max_length=255)
-    apellido = models.CharField(max_length=255)
-    email = models.EmailField(unique=True)
-    contrasena = models.CharField(max_length=255)
-    rol = models.CharField(max_length=50, choices=[('Administrador', 'Administrador'), ('Ejecutivo', 'Ejecutivo'), ('Cliente', 'Cliente')])
-    group = models.ForeignKey(Group, on_delete=models.CASCADE, verbose_name='Rol', default=2)
-    is_active = models.BooleanField(default=True)
-    
-    def __str__(self):
-        return self.nombre + " " + self.apellido
-
-
-    
+  
 # Modelo de datos Tickets
 class Ticket(models.Model):
     fecha_creacion = models.DateTimeField(auto_now_add=True)
