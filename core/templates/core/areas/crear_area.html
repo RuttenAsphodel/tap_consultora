@@ -1,0 +1,42 @@
+{% extends 'core/base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+
+ {% if request.user.is_authenticated %} 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Ticket</title>
+</head>
+<body>
+    <div class="col">
+        <div class="card border-dark mb-3 text-left p-1" style="max-width: auto;">
+            <div class="card-body p-0">
+                <div class="card-text text-bg-danger text-center p-2">
+                    <h5 class="card-text text-white">Crear Area</h5>
+     
+                </div>
+    
+                <div class="card-body">
+                     <form method="post">
+                        {% csrf_token %}
+                         {% bootstrap_form form_area layout='horizontal' %} 
+                        <hr>
+                        <button type="submit" class='btn btn-primary'>Crear Area</button> | 
+                        <a href="{% url 'listar_area' %}" class="btn btn-danger">Cancelar</a>
+                    </form>
+                </div>
+            </div>
+        </div>   
+    </div>
+
+
+</body>
+</html>
+
+{% endif %}
+
+
+{% endblock %}

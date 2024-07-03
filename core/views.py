@@ -4,8 +4,6 @@ from django.contrib.auth import logout, login
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib import messages
 
-from .forms import FormCrearUsuario, FormEditarUsuario, FormCrearTicket, FormEditarTicket, FormConfigProfile, FormCrearArea, FormCrearCriticidad, FormCrearTipo, FormCrearEstado
-from .models import Usuario, Ticket, Profile, Area, Criticidad, Tipo, Estado
 
 # Create your views here.
 # Decorator login_required para validar el usuario antes de ejecutar la vista Usuarios
@@ -220,16 +218,23 @@ def register_view(request):
 def vista_crear_area(request):
     if request.method == 'POST':
 
-        form = FormCrearArea(request.POST)
-        if form.is_valid():
-            nuevo_Area = form.save(commit=False)
-            nuevo_Area.user = request.user
-            nuevo_Area.save()
-            return redirect('tickets')
+        form_area = FormCrearArea(request.POST)
+        if form_area.is_valid():
+            nuevo_area = form_area.save(commit=False)
+            nuevo_area.user = request.user
+            nuevo_area.save()
+            return redirect('listar_area')
     else:
-        form = FormCrearArea()
+        form_area = FormCrearArea()
 
-    return render(request, 'core/tickets/crear_ticket.html', {'form': form})
+    return render(request, 'core/areas/crear_area.html', {'form_area': form_area})
+
+@login_required
+def vista_listar_area(request):
+    listado_area = Area.objects.all()
+    return render(request, 'core/areas/listar_areas.html', {'listado_area': listado_area})
+
+    
 
 # Vistas CRUD Criticidad
 
@@ -238,14 +243,16 @@ def vista_crear_criticidad(request):
 
         form = FormCrearCriticidad(request.POST)
         if form.is_valid():
-            nuevo_Criticidad = form.save(commit=False)
-            nuevo_Criticidad.user = request.user
-            nuevo_Criticidad.save()
+            nuevo_criticidad = form.save(commit=False)
+            nuevo_criticidad.user = request.user
+            nuevo_criticidad.save()
             return redirect('tickets')
     else:
         form = FormCrearCriticidad()
 
     return render(request, 'core/tickets/crear_ticket.html', {'form': form})
+
+
 
 # Vistas CRUD Tipo
 def vista_crear_tipo(request):
@@ -253,9 +260,9 @@ def vista_crear_tipo(request):
 
         form = FormCrearTipo(request.POST)
         if form.is_valid():
-            nuevo_Tipo = form.save(commit=False)
-            nuevo_Tipo.user = request.user
-            nuevo_Tipo.save()
+            nuevo_tipo = form.save(commit=False)
+            nuevo_tipo.user = request.user
+            nuevo_tipo.save()
             return redirect('tickets')
     else:
         form = FormCrearTipo()
@@ -268,12 +275,15 @@ def vista_crear_estado(request):
 
         form = FormCrearEstado(request.POST)
         if form.is_valid():
-            nuevo_Estado = form.save(commit=False)
-            nuevo_Estado.user = request.user
-            nuevo_Estado.save()
+            nuevo_estado = form.save(commit=False)
+            nuevo_estado.user = request.user
+            nuevo_estado.save()
             return redirect('tickets')
     else:
         form = FormCrearEstado()
 
     return render(request, 'core/tickets/crear_ticket.html', {'form': form})
 
+# Terminos y Condiciones
+def terminos_y_condiciones(request):
+    return render(request, 'core/terminos_y_condiciones.html')
