@@ -28,26 +28,26 @@
                     <a class="nav-link text-white" aria-current="page" href={% url 'listar_usuarios' %}>Usuarios</a>
                   </li> {% endcomment %}
                   <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administrar</a>
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Informes</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownId">
+                        <a class="dropdown-item" href="#">Tickets por Ejecutivos</a>
+                        <a class="dropdown-item" href="#">Solicitudes Diarias</a>
+                        <a class="dropdown-item" href="#">Cerrados por Dia</a>
+                    </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mantenedores</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
                         <a class="dropdown-item" href={% url 'listar_usuarios' %}>Usuarios</a>
                         <a class="dropdown-item" href="#">Grupos Usuarios</a>
-                        <a class="dropdown-item" href="#">Areas</a>
-                        <a class="dropdown-item" href="#">Prioridades Ticket</a>
+                        <a class="dropdown-item" href={% url 'listar_area' %}>Areas</a>
                         <a class="dropdown-item" href="#">Estados Ticket</a>
                         <a class="dropdown-item" href="#">Categorias Ticket</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle text-white" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Informes</a>
-                  <div class="dropdown-menu" aria-labelledby="dropdownId">
-                      <a class="dropdown-item" href="#">Tickets por Ejecutivos</a>
-                      <a class="dropdown-item" href="#">Solicitudes Diarias</a>
-                      <a class="dropdown-item" href="#">Cerrados por Dia</a>
-                  </div>
-              </li>
+                
                 <li>
-                  <a class="nav-link text-white" aria-current="page" href="#">Terminos y Condiciones</a>
+                  <a class="nav-link text-white" aria-current="page" href={% url 'terminos_y_condiciones' %}>Terminos y Condiciones</a>
 
                 </li>
 

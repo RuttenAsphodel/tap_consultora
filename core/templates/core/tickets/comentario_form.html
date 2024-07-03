@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+  <h1>{{ ticket.titulo }}</h1>
+  
+  <h2>Comentarios</h2>
+  <ul>
+    {% for comentario in comentarios %}
+      <li>
+        <b>{{ comentario.user.username }}</b> - {{ comentario.fecha_creacion }}
+        <p>{{ comentario.contenido }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <h2>Agregar Comentario</h2>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Agregar Comentario</button>
+
+  </form>
+
+  
+{% endblock %}
