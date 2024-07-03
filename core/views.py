@@ -1,8 +1,13 @@
 from django.shortcuts import render, redirect,  get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout, login
+# from django.contrib.auth.mixins import LoginRequiredMixin
+# from django.views.generic import CreateView, UpdateVsiew, DetailView, ListView
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib import messages
+
+from .forms import FormCrearUsuario, FormEditarUsuario, FormCrearTicket, FormEditarTicket, FormConfigProfile, FormCrearArea, FormCrearCriticidad, FormCrearTipo, FormCrearEstado #FormCrearComentario
+from .models import Usuario, Ticket, Profile, Area, Criticidad, Tipo, Estado #Comentarios
 
 
 # Create your views here.
@@ -155,6 +160,32 @@ def vista_editar_ticket(request, id):
 
     return render(request, 'core/tickets/editar_ticket.html', {'form': form, 'ticket': ticket})
 
+
+# class TicketDetailView(LoginRequiredMixin, DetailView):
+#     model = Ticket
+#     template_name = 'core/tickets/detalle_ticket.html'
+#     context_object_name = 'ticket'
+
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['comentarios'] = self.object.comentario_set.all() # Obtener todos los comentarios del ticket
+#         context['comentario_form'] = FormCrearComentario()
+#         return context
+
+# @login_required
+# def crear_comentario(request, pk):
+#     ticket = get_object_or_404(Ticket, pk=pk)
+#     if request.method == 'POST':
+#         form = FormCrearComentario(request.POST)
+#         if form.is_valid():
+#             comentario = form.save(commit=False)
+#             comentario.ticket = ticket
+#             comentario.usuario = request.user
+#             comentario.save()
+#             return redirect('detalle_ticket', pk=pk)
+#     else:
+#         form = FormCrearComentario()
+#     return render(request, 'core/tickets/comentario_form.html', {'form': form})
 
 def exit(request):
     logout(request)
