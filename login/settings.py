@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'login.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-
+"""
 DATABASES = {
 
     'default': {
@@ -95,7 +95,20 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+"""
 
+# Conexion BD Console Cloud
+DATABASES = {  
+    'default': {  
+        'ENGINE': 'django.db.backends.mysql',  
+        'NAME': 'b8a5ystmmb7rnk0auez9',  
+        'USER': 'u5lhlfdechbk2jf2',  
+        'PASSWORD': 'MR7KyklmpbWZrfujb2Mo',  
+        'HOST': 'b8a5ystmmb7rnk0auez9-mysql.services.clever-cloud.com',  
+        'PORT': '3306',  
+     }  
+    
+}  
 
 
 # Password validation
