@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import home, vista_listar_tickets, vista_listar_usuarios, vista_crear_usuario, vista_detalle_usuario, eliminar_usuario_logico,vista_crear_ticket, vista_detalle_ticket,vista_editar_ticket ,exit, login_view, register_view, vista_crear_area, vista_listar_area, terminos_y_condiciones, crear_comentario
+from .views import home, vista_listar_tickets, vista_listar_usuarios, vista_crear_usuario, vista_detalle_usuario, eliminar_usuario_logico,vista_crear_ticket, vista_detalle_ticket,vista_editar_ticket ,exit, login_view, register_view, vista_crear_area, vista_listar_area, terminos_y_condiciones
 
 urlpatterns = [
     path('', home, name = 'home'),
