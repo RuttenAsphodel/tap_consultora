@@ -16,7 +16,7 @@ class FormCrearTicket(forms.ModelForm):
 class FormEditarTicket(forms.ModelForm):
     class Meta:
         model = Ticket
-        fields = ['ejecutivo','estado', 'descripcion', 'observaciones']
+        fields = ['ejecutivo','area','estado', 'descripcion']
 
     
     def __init__(self, *args, **kwargs):
@@ -89,7 +89,7 @@ class FormCrearEstado(forms.ModelForm):
 class FormCrearComentario(forms.ModelForm):
     class Meta:
         model = Comentarios
-        fields = ['ticket','user','comentario']
+        fields = ['comentario', 'user']
         
 
 # Formulario de Configuracion de Perfiles

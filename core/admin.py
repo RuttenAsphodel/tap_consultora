@@ -18,3 +18,5 @@ class TicketAdmin(admin.ModelAdmin):
                     'estado')
 
 admin.site.register(Ticket, TicketAdmin)
+
+admin.site.register(Comentarios)

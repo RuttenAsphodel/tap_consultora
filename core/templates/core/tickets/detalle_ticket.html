@@ -1,3 +1,5 @@
+{% load bootstrap5 %}
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -123,7 +125,7 @@
                 </div>
             </li>
 
-            <li class="list-group-item alert">
+            {% comment %} <li class="list-group-item alert">
                 <div class="mb-2 row">
                     <label
                     for="rol"
@@ -133,11 +135,20 @@
                     for="observaciones"
                     class="col-8 col-form-label-sm">{{ ticket.observaciones }}</label>    
                 </div>
-            </li>
-
-
-
+            </li> {% endcomment %}
         </list-group>
+
+            <h2>Comentarios</h2>
+            <ul class='list-group '>
+                {% for comentario in comentarios %}
+                    <li class="list-group-item ">
+                        <p class="text-bg-primary">Por: {{ comentario.user }} el {{ comentario.fecha_comentario }} </p>
+                        <p>{{ comentario.comentario }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+
+ 
 
     </ul>
 </div> 

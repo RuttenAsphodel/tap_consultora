@@ -17,10 +17,31 @@
                     {% bootstrap_form form layout='horizontal' %}
                     <button type="submit" class="btn btn-success">Guardar cambios</button>
                 </form>
+
+                <h2>Comentarios</h2>
+                <ul class='list-group '>
+                    {% for comentario in comentarios %}
+                        <li class="list-group-item ">
+                            <p class="text-bg-success">Por: {{ comentario.user }} el {{ comentario.fecha_comentario }} </p>
+                            <p>{{ comentario.comentario }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+                
+                <h2>Añadir Comentario</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {% bootstrap_form form_comentario layout='horizontal' %}
+                    <button type="submit" class='btn btn-success'>Añadir Comentario</button>
+                </form>
+    
             </div>
         </div>
     </div>
 </div>
+
+
+
 
 
 

@@ -6,8 +6,8 @@ from django.contrib.auth import logout, login
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib import messages
 
-from .forms import FormCrearTicket, FormEditarTicket, FormConfigProfile, FormCrearArea, FormCrearCriticidad, FormCrearTipo, FormCrearEstado
-from .models import Ticket, Profile, Area, Criticidad, Tipo, Estado
+from .forms import FormCrearTicket, FormEditarTicket, FormConfigProfile, FormCrearArea, FormCrearCriticidad, FormCrearTipo, FormCrearEstado, FormCrearComentario
+from .models import Ticket, Profile, Area, Criticidad, Tipo, Estado, Comentarios
 
 # Create your views here.
 # Decorator login_required para validar el usuario antes de ejecutar la vista Usuarios
@@ -116,15 +116,36 @@ def vista_listar_tickets(request):
 # Vista de Detalle de Tickets
 def vista_detalle_ticket(request, id):
     ticket = get_object_or_404(Ticket, id=id)
-    return render(request, 'core/tickets/detalle_ticket.html', {'ticket': ticket})
+    comentarios = ticket.comentarios.all().order_by('-fecha_comentario')
+    
+    if request.method =='POST':
+        form_comentario = FormCrearComentario(request.POST)
+        if form_comentario.is_valid():
+            nuevo_comentario = form_comentario.save(commit=False)
+            nuevo_comentario.ticket = ticket
+            nuevo_comentario.save()
+            return redirect('detalle_ticket', id=ticket.id)
+    else:
+        form_comentario = FormCrearComentario
+        
+    
+    return render(request, 'core/tickets/detalle_ticket.html', {
+        'ticket' : ticket,
+        'comentarios': comentarios,
+        'form_comentario': form_comentario,
+    })
+
+# return render(request, 'core/tickets/detalle_ticket.html', {'ticket': ticket})
+
+
 
 @login_required
 # Vista de Creacion del Ticket
 def vista_crear_ticket(request):
     if request.method == 'POST':
         # Filtrar ejecutivos disponibles solo si el usuario es cliente
-        # if request.usuario.rol == 'Cliente':
-        #     form = FormCrearTicket(request.POST, cliente=request.usuario)
+        # if request.profile.group == 'Cliente':
+        #     form = FormCrearTicket(request.POST, cliente=request.profile)
         # else:
         form = FormCrearTicket(request.POST)
         if form.is_valid():
@@ -138,8 +159,8 @@ def vista_crear_ticket(request):
             return redirect('tickets')
     else:
         # Filtrar ejecutivos disponibles solo si el usuario es cliente
-        # if request.Usuario.rol == 'Cliente':
-        #     form = FormCrearTicket(cliente=request.usuario)
+        # if request.profile.group == 'Cliente':
+        #     form = FormCrearTicket(cliente=request.profile)
         # else:
         form = FormCrearTicket()
 
@@ -150,7 +171,7 @@ def vista_crear_ticket(request):
 def vista_editar_ticket(request, id):
     ticket = get_object_or_404(Ticket, id=id)
     # Permitir edición solo al ejecutivo asignado o al cliente creador
-    # if request.usuario == ticket.ejecutivo or request.usuario == ticket.cliente:
+    # if request.user == ticket.ejecutivo or request.user == ticket.cliente:
     if request.method == 'POST':
         form = FormEditarTicket(request.POST, instance=ticket)
         if form.is_valid():
@@ -161,7 +182,27 @@ def vista_editar_ticket(request, id):
     #else:
     #   return redirect('listar_tickets')  # Redirigir si no tiene permiso
 
-    return render(request, 'core/tickets/editar_ticket.html', {'form': form, 'ticket': ticket})
+    comentarios = ticket.comentarios.all().order_by('-fecha_comentario')
+    
+    if request.method =='POST':
+        form_comentario = FormCrearComentario(request.POST)
+        if form_comentario.is_valid():
+            nuevo_comentario = form_comentario.save(commit=False)
+            nuevo_comentario.ticket = ticket
+            nuevo_comentario.save()
+            return redirect('editar_ticket', id=ticket.id)
+    else:
+        form_comentario = FormCrearComentario
+        
+    
+    return render(request, 'core/tickets/editar_ticket.html', {
+        'ticket' : ticket,
+        'form' : form,
+        'comentarios': comentarios,
+        'form_comentario': form_comentario,
+        
+    })
+#    return render(request, 'core/tickets/editar_ticket.html', {'form': form, 'ticket': ticket})
 
 
 def exit(request):

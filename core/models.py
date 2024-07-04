@@ -85,10 +85,13 @@ class Estado(models.Model):
 
 # Modelo de Comentarios no tocar.
 class Comentarios(models.Model):
-    ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    comentario = models.CharField(max_length=255, blank=True, verbose_name='Comentario')
+    ticket = models.ForeignKey(Ticket, related_name='comentarios' , on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Usuario')
+    comentario = models.TextField(max_length=255, blank=True, verbose_name='Comentario')
     fecha_comentario = models.DateTimeField(auto_now_add=True, verbose_name='Creado en')
+    
+    def __str__(self):
+        return self.comentario
 
 
 # Perfil de usuario extendido Django
@@ -104,7 +107,7 @@ class Profile(models.Model):
     
 
     def __str__(self):
-        return self.user.username
+        return self.nombre +' ' +  self.apellido
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
