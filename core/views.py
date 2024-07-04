@@ -204,6 +204,30 @@ def vista_editar_ticket(request, id):
     })
 #    return render(request, 'core/tickets/editar_ticket.html', {'form': form, 'ticket': ticket})
 
+# Vistas de Informes
+
+# Modificar vista para realizar informes
+# def contratoEquipos(request):
+#     equipos = contratosEquipos.objects.all()
+    
+#     # obtener el valor del formulario de búsqueda si existe
+#     series_query = request.GET.get('series')
+#     if series_query:
+#         equipos = equipos.filter(serie__icontains=series_query)
+
+#     page = request.GET.get('page', 1)
+#     paginator = Paginator(equipos, 20)
+    
+#     try:
+#         equipos = paginator.page(page)
+#     except PageNotAnInteger:
+#         equipos = paginator.page(1)
+#     except EmptyPage:
+#         equipos = paginator.page(paginator.num_pages)
+        
+    
+#     return render(request, 'contratos/listadocontratos.html', {'equipos': equipos})
+
 
 def exit(request):
     logout(request)
