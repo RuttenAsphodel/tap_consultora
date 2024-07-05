@@ -65,7 +65,7 @@ class FormCrearTipo(forms.ModelForm):
             })
         }
         labels = {
-            'tipo_ticket': 'Tipo Ticket'
+            'tipo_ticket': 'Categoria de Ticket'
         }
 
 #form crear estado

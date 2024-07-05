@@ -206,14 +206,14 @@ def vista_editar_ticket(request, id):
 
 # Vistas de Informes
 
-# Modificar vista para realizar informes
-# def contratoEquipos(request):
-#     equipos = contratosEquipos.objects.all()
+#Modificar vista para realizar informes
+# def vista_informe_x_ejecutivos(request):
+#     ejecutivos = Ticket.objects.all()
     
 #     # obtener el valor del formulario de búsqueda si existe
-#     series_query = request.GET.get('series')
-#     if series_query:
-#         equipos = equipos.filter(serie__icontains=series_query)
+#     ejecutivos_query = request.GET.get('ejecutivo')
+#     if ejecutivos_query:
+#         ejecutivos = Ticket.filter(ejecutivo__icontains=ejecutivos_query)
 
 #     page = request.GET.get('page', 1)
 #     paginator = Paginator(equipos, 20)
@@ -331,31 +331,40 @@ def vista_crear_criticidad(request):
 def vista_crear_tipo(request):
     if request.method == 'POST':
 
-        form = FormCrearTipo(request.POST)
-        if form.is_valid():
-            nuevo_tipo = form.save(commit=False)
+        form_tipo = FormCrearTipo(request.POST)
+        if form_tipo.is_valid():
+            nuevo_tipo = form_tipo.save(commit=False)
             nuevo_tipo.user = request.user
             nuevo_tipo.save()
-            return redirect('tickets')
+            return redirect('listar_tipo')
     else:
-        form = FormCrearTipo()
+        form_tipo = FormCrearTipo()
 
-    return render(request, 'core/tickets/crear_ticket.html', {'form': form})
+    return render(request, 'core/tipos/crear_tipo.html', {'form_tipo': form_tipo})
+
+def vista_listar_tipo(request):
+    listado_tipo = Tipo.objects.all()
+    return render(request, 'core/tipos/listar_tipo.html', {'listado_tipo': listado_tipo})
 
 # Vistas CRUD Estado
 def vista_crear_estado(request):
     if request.method == 'POST':
 
-        form = FormCrearEstado(request.POST)
-        if form.is_valid():
-            nuevo_estado = form.save(commit=False)
+        form_estado = FormCrearEstado(request.POST)
+        if form_estado.is_valid():
+            nuevo_estado = form_estado.save(commit=False)
             nuevo_estado.user = request.user
             nuevo_estado.save()
-            return redirect('tickets')
+            return redirect('listar_estado')
     else:
-        form = FormCrearEstado()
+        form_estado = FormCrearEstado()
 
-    return render(request, 'core/tickets/crear_ticket.html', {'form': form})
+    return render(request, 'core/estados/crear_estado.html', {'form_estado': form_estado})
+
+def vista_listar_estado(request):
+    listado_estado = Estado.objects.all()
+    return render(request, 'core/estados/listar_estado.html', {'listado_estado': listado_estado})
+
 
 # Terminos y Condiciones
 def terminos_y_condiciones(request):
