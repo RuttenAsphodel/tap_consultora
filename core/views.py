@@ -309,8 +309,8 @@ def vista_listar_area(request):
 
     
 
+@login_required
 # Vistas CRUD Criticidad
-
 def vista_crear_criticidad(request):
     if request.method == 'POST':
 
@@ -326,7 +326,7 @@ def vista_crear_criticidad(request):
     return render(request, 'core/tickets/crear_ticket.html', {'form': form})
 
 
-
+@login_required
 # Vistas CRUD Tipo
 def vista_crear_tipo(request):
     if request.method == 'POST':
@@ -342,10 +342,12 @@ def vista_crear_tipo(request):
 
     return render(request, 'core/tipos/crear_tipo.html', {'form_tipo': form_tipo})
 
+@login_required
 def vista_listar_tipo(request):
     listado_tipo = Tipo.objects.all()
     return render(request, 'core/tipos/listar_tipo.html', {'listado_tipo': listado_tipo})
 
+@login_required
 # Vistas CRUD Estado
 def vista_crear_estado(request):
     if request.method == 'POST':
@@ -361,6 +363,7 @@ def vista_crear_estado(request):
 
     return render(request, 'core/estados/crear_estado.html', {'form_estado': form_estado})
 
+@login_required
 def vista_listar_estado(request):
     listado_estado = Estado.objects.all()
     return render(request, 'core/estados/listar_estado.html', {'listado_estado': listado_estado})
