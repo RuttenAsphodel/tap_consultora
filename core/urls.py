@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import home, vista_listar_tickets, vista_listar_usuarios, vista_crear_usuario, vista_detalle_usuario, eliminar_usuario_logico,vista_crear_ticket, vista_detalle_ticket,vista_editar_ticket ,exit, login_view, register_view, vista_crear_area, vista_listar_area, vista_crear_estado,vista_listar_estado,vista_crear_tipo,vista_listar_tipo,vista_informe_x_ejecutivos,terminos_y_condiciones
+from .views import home, vista_listar_tickets, vista_listar_usuarios, vista_crear_usuario, vista_detalle_usuario, eliminar_usuario_logico,vista_crear_ticket, vista_detalle_ticket,vista_editar_ticket ,exit, login_view, register_view, vista_crear_area, vista_listar_area, vista_crear_estado,vista_listar_estado,vista_crear_tipo,vista_listar_tipo,vista_informe_x_ejecutivos,vista_informe_diario,terminos_y_condiciones
 
 urlpatterns = [
     path('', home, name = 'home'),
@@ -41,5 +41,6 @@ urlpatterns = [
     # Urls Informes
     # Informe x Ejecutivo
     path('informe_ejecutivo', vista_informe_x_ejecutivos,name='informe_ejecutivo'),
+    path('informe_diario', vista_informe_diario, name='informe_diario'),
     
 ]

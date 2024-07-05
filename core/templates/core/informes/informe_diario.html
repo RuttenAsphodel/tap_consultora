@@ -6,16 +6,16 @@
 
 {% if request.user.is_authenticated %}
 
+
 <div class="row row-cols-1 row-cols-md-1 g-1">
     <div class="col">
         <div class="card border-dark mb-3 text-left p-1" style="max-width: auto;">
             <div class="card bg-danger p-2">
-                <h5 class="text-white text-center">Informes de Tickets por Ejecutivo</h5>
+                <h5 class="text-white text-center">Informes Diarios</h5>
             </div>
 
             <form method="get">
-                
-                {{ filtro_ejecutivo.form.as_p }}
+                {{ filter.form.as_p }}
                 <button type="submit">Buscar</button>
             </form>
 
@@ -36,7 +36,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for ticket in filtro_ejecutivo.qs %}
+                        {% for ticket in filter.qs %}
                         <tr>
                             <td>{{ ticket.id }}</td>
                             <td>{{ ticket.fecha_creacion | date:"d/m/Y H:i:s" }}</td>

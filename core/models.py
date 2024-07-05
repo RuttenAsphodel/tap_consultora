@@ -24,7 +24,9 @@ class Ticket(models.Model):
     
     # Enlazado al modelo User de Django. 
     user = models.ForeignKey(User,on_delete=models.CASCADE, verbose_name='Usuario', null=True)
-    
+
+        
+        
 # -----------------------------------------------------------------------------------------------------------------
 # Estos modelos se deben enlazar a vistas para que podamos manejarlos desde la aplicacion, y podamos crear estados, areas, criticidad (prioridad), tipos y estados de los tickets
 

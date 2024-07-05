@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect,  get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout, login
 # from django.contrib.auth.mixins import LoginRequiredMixin
-# from django.views.generic import CreateView, UpdateVsiew, DetailView, ListView
+from django.views.generic import CreateView, DetailView, ListView
+from django_filters.views import FilterView
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib import messages
-
+from .filters import TicketFilter, FiltroEjecutivo
 from .forms import FormCrearTicket, FormEditarTicket, FormConfigProfile, FormCrearArea, FormCrearCriticidad, FormCrearTipo, FormCrearEstado, FormCrearComentario
 from .models import Ticket, Profile, Area, Criticidad, Tipo, Estado, Comentarios
 
@@ -208,12 +209,12 @@ def vista_editar_ticket(request, id):
 
 #Modificar vista para realizar informes
 def vista_informe_x_ejecutivos(request):
-    ejecutivos = Ticket.objects.all()
+    # ticket = Ticket.objects.all()
     
-    # obtener el valor del formulario de búsqueda si existe
-    ejecutivos_query = request.GET.get('ejecutivo')
-    if ejecutivos_query:
-        ejecutivos = Ticket.filter(ejecutivo__icontains=ejecutivos_query)
+    # # obtener el valor del formulario de búsqueda si existe
+    # ejecutivos_query = request.GET.get('ejecutivo')
+    # if ejecutivos_query:
+    #     ticket = ticket.filter(ejecutivo__profile__icontains=ejecutivos_query)
 
 #     page = request.GET.get('page', 1)
 #     paginator = Paginator(equipos, 20)
@@ -225,8 +226,13 @@ def vista_informe_x_ejecutivos(request):
 #     except EmptyPage:
 #         equipos = paginator.page(paginator.num_pages)
         
-    
-    return render(request, 'core/informes/informe_x_ejecutivos.html', {'ejecutivos': ejecutivos})
+    filtro_ejecutivo = FiltroEjecutivo(request.GET, queryset=Ticket.objects.all())
+    return render(request, 'core/informes/informe_x_ejecutivos.html', {'filtro_ejecutivo': filtro_ejecutivo})
+
+
+def vista_informe_diario(request):
+    ticket_filter = TicketFilter(request.GET, queryset=Ticket.objects.all())
+    return render(request, 'core/informes/informe_diario.html', {'filter': ticket_filter})
 
 
 def exit(request):
