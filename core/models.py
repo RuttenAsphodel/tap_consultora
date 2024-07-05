@@ -107,7 +107,7 @@ class Profile(models.Model):
     
 
     def __str__(self):
-        return self.nombre +' ' +  self.apellido
+        return self.nombre + ' ' + self.apellido
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
