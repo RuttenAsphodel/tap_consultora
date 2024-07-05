@@ -1,0 +1,66 @@
+{% extends 'core/base.html' %}
+
+{% load bootstrap5 %}
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+
+<div class="row row-cols-1 row-cols-md-1 g-1">
+    <div class="col">
+        <div class="card border-dark mb-3 text-left p-1" style="max-width: auto;">
+            <div class="card bg-danger p-2">
+                <h5 class="text-white text-center">Informes de Tickets por Ejecutivo</h5>
+            </div>
+            <form method="GET">
+                <label for="ejecutivos">Filtrar por Ejecutivo:</label>
+                <input type="text" id="id" name="ejecutivos">
+                <input type="submit" value="Filtrar">
+            </form> 
+
+
+            <div class="table-responsive small">
+                <table class="table table-centered table-nowrap table-hover">
+                    <thead class="thead-light table-active">
+                        <tr>
+                            <th>ID</th>
+                            <th>Fecha Creación</th>
+                            <th>Cliente</th>
+                            <th>Ejecutivo</th>
+                            <th>Área</th>
+                            <th>Tipo</th>
+                            <th>Criticidad</th>
+                            <th>Estado</th>
+                            <th>Fecha Cierre</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ticket in ejecutivos %}
+                        <tr>
+                            <td>{{ ticket.id }}</td>
+                            <td>{{ ticket.fecha_creacion | date:"d/m/Y H:i:s" }}</td>
+                            <td>{{ ticket.cliente.nombre }} {{ ticket.cliente.apellido }}</td>
+                            <td>{{ ticket.ejecutivo.nombre }} {{ ticket.ejecutivo.apellido }}</td>
+                            <td>{{ ticket.area }}</td>
+                            <td>{{ ticket.tipo }}</td>
+                            <td>{{ ticket.criticidad }}</td>
+                            <td>{{ ticket.estado }}</td>
+                            <td>{{ ticket.fecha_cierre | date:"d/m/Y H:i:s" }}</td>
+
+                            <td>
+                                <a href="{% url 'detalle_ticket' ticket.pk  %}" target='_blank'>Ver detalle</a> |                          
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endif %} 
+{% endblock %}

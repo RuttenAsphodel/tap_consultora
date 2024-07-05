@@ -207,13 +207,13 @@ def vista_editar_ticket(request, id):
 # Vistas de Informes
 
 #Modificar vista para realizar informes
-# def vista_informe_x_ejecutivos(request):
-#     ejecutivos = Ticket.objects.all()
+def vista_informe_x_ejecutivos(request):
+    ejecutivos = Ticket.objects.all()
     
-#     # obtener el valor del formulario de búsqueda si existe
-#     ejecutivos_query = request.GET.get('ejecutivo')
-#     if ejecutivos_query:
-#         ejecutivos = Ticket.filter(ejecutivo__icontains=ejecutivos_query)
+    # obtener el valor del formulario de búsqueda si existe
+    ejecutivos_query = request.GET.get('ejecutivo')
+    if ejecutivos_query:
+        ejecutivos = Ticket.filter(ejecutivo__icontains=ejecutivos_query)
 
 #     page = request.GET.get('page', 1)
 #     paginator = Paginator(equipos, 20)
@@ -226,7 +226,7 @@ def vista_editar_ticket(request, id):
 #         equipos = paginator.page(paginator.num_pages)
         
     
-#     return render(request, 'contratos/listadocontratos.html', {'equipos': equipos})
+    return render(request, 'core/informes/informe_x_ejecutivos.html', {'ejecutivos': ejecutivos})
 
 
 def exit(request):
