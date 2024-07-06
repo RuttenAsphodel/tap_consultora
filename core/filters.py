@@ -13,5 +13,7 @@ class FiltroEjecutivo(django_filters.FilterSet):
     class Meta:
         model = Ticket
         fields = {
-            'ejecutivo':['exact']
+            'ejecutivo':['exact'], 
+            'estado':['exact'], 
+            'area':['exact'],
         }
