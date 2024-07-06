@@ -13,11 +13,13 @@
                 <h5 class="text-white text-center">Informes de Tickets por Ejecutivo</h5>
             </div>
 
-            <form method="get">
-                
-                {{ filtro_ejecutivo.form.as_p }}
-                <button type="submit">Buscar</button>
-            </form>
+            <div class="card-body">
+                <form method="get">
+                    {% bootstrap_form filtro_ejecutivo.form layout='horizontal' %}
+                    
+                    <button type="submit">Buscar</button>
+                </form>
+            </div>
 
             <div class="table-responsive small">
                 <table class="table table-centered table-nowrap table-hover">
